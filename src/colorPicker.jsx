@@ -1,8 +1,9 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 
 function ColorPicker(){
 
-  const [color, setColor] = useState("#ffffff");
+  const [color, setColor] =  useState(() => JSON.parse(localStorage.getItem("color")) || "#ffffff");
+  useEffect(() => {localStorage.setItem("color", JSON.stringify(color))}, [color]);
 
   function handleChange(e){
     setColor(e.target.value)
